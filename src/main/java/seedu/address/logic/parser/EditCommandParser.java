@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODGROUP;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -35,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_HEIGHT, PREFIX_WEIGHT, PREFIX_TAG);
+                        PREFIX_HEIGHT, PREFIX_WEIGHT, PREFIX_BLOODGROUP, PREFIX_TAG);
 
         Index index;
 
@@ -63,6 +64,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_WEIGHT).isPresent()) {
             editPersonDescriptor.setWeight(ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT).get()));
+        }
+        if (argMultimap.getValue(PREFIX_BLOODGROUP).isPresent()){
+            editPersonDescriptor.setBloodGroup(ParserUtil.parseBloodGroup(argMultimap.getValue(PREFIX_BLOODGROUP).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

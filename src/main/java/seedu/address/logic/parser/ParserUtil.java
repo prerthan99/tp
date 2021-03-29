@@ -18,6 +18,7 @@ import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
+import seedu.address.model.person.BloodGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -157,6 +158,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String blood group} into a {@code blood group}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code bloodGroup} is invalid.
+     */
+    public static BloodGroup parseBloodGroup(String bloodGroup) throws ParseException {
+        requireNonNull(bloodGroup);
+        String trimmedBloodGroup = bloodGroup.trim();
+        if (!BloodGroup.isValidBloodGroup(trimmedBloodGroup)){
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new BloodGroup(trimmedBloodGroup);
     }
 
     /**

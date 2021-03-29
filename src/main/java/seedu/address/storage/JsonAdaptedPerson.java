@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
+import seedu.address.model.person.BloodGroup;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String height;
     private final String weight;
+    private final String bloodGroup;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedRecord> records = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
@@ -42,7 +44,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("height") String height, @JsonProperty("weight") String weight,
+                             @JsonProperty("height") String height, @JsonProperty("weight") String weight, @JsonProperty("blood group") String bloodGroup,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments,
                              @JsonProperty("records") List<JsonAdaptedRecord> records) {
@@ -52,6 +54,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.height = height;
         this.weight = weight;
+        this.bloodGroup = bloodGroup;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -73,6 +76,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         height = source.getHeight().value;
         weight = source.getWeight().value;
+        bloodGroup = source.getBloodGroup().bloodGroup;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -143,10 +147,18 @@ class JsonAdaptedPerson {
         }
         final Weight modelWeight = new Weight(weight);
 
+        if (bloodGroup == null){
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+        }
+        if(!BloodGroup.isValidBloodGroup(bloodGroup)){
+            throw new IllegalValueException(BloodGroup.MESSAGE_CONSTRAINTS);
+        }
+        final BloodGroup modelBloodGroup = new BloodGroup(bloodGroup);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         Person person = new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelHeight, modelWeight, modelTags);
+                modelHeight, modelWeight, modelBloodGroup, modelTags);
 
         // add the appointments
         for (JsonAdaptedAppointment appt : appointments) {

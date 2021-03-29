@@ -44,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label weight;
     @FXML
+    private Label bloodgroup;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane appointments;
@@ -61,6 +63,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         height.setText(person.getHeight().value);
         weight.setText(person.getWeight().value);
+        bloodgroup.setText(person.getBloodGroup().bloodGroup);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -40,6 +40,8 @@ public class ViewPatientBox extends UiPart<Region> {
     @FXML
     private Label weight;
     @FXML
+    private Label bloodgroup;
+    @FXML
     private Label tagInfo;
     @FXML
     private Label appointmentInfo;
@@ -60,6 +62,7 @@ public class ViewPatientBox extends UiPart<Region> {
         email.setText("Email: " + person.getEmail().value);
         height.setText("Height: " + person.getHeight().value);
         weight.setText("Weight: " + person.getWeight().value);
+        bloodgroup.setText("Blood Group: " + person.getBloodGroup().bloodGroup);
         tagInfo.setText("Tags:");
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

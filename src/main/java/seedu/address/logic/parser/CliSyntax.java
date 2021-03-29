@@ -1,4 +1,5 @@
 package seedu.address.logic.parser;
+//import seedu.address.model.person.BloodGroup;
 
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
@@ -12,6 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_HEIGHT = new Prefix("h/");
     public static final Prefix PREFIX_WEIGHT = new Prefix("w/");
+    public static final Prefix PREFIX_BLOODGROUP = new Prefix("b/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
 }

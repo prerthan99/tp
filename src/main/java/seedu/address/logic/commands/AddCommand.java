@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODGROUP;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -28,6 +29,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_HEIGHT + "HEIGHT "
             + PREFIX_WEIGHT + "WEIGHT "
+            + PREFIX_BLOODGROUP + "BLOOD GROUP"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -36,6 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_HEIGHT + "169cm "
             + PREFIX_WEIGHT + "69kg "
+            + PREFIX_BLOODGROUP + "O+"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

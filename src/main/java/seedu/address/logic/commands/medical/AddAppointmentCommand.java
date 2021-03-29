@@ -22,6 +22,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
+import seedu.address.model.person.BloodGroup;
 import seedu.address.model.tag.Tag;
 
 public class AddAppointmentCommand extends Command {
@@ -82,9 +83,10 @@ public class AddAppointmentCommand extends Command {
         Address updatedAddress = personToEdit.getAddress();
         Height updatedHeight = personToEdit.getHeight();
         Weight updatedWeight = personToEdit.getWeight();
+        BloodGroup updatedBloodGroup = personToEdit.getBloodGroup();
         Set<Tag> updatedTags = personToEdit.getTags();
         List<Appointment> updatedAppointments = personToEdit.getAppointments();
-        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
+        Person p = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight, updatedBloodGroup,
                 updatedTags, updatedAppointments);
         p.addAppointment(appt);
         return p;

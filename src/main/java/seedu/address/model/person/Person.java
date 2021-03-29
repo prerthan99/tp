@@ -32,6 +32,7 @@ public class Person {
     //Health-related data fields
     private final Height height;
     private final Weight weight;
+    private final BloodGroup bloodGroup;
 
     // Medical fields
     private final List<MedicalRecord> records = new ArrayList<>();
@@ -40,22 +41,23 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Height height, Weight weight, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, height, weight, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Height height, Weight weight,BloodGroup bloodGroup, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, height, weight, bloodGroup, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.height = height;
         this.weight = weight;
+        this.bloodGroup = bloodGroup;
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Height height, Weight weight,
-                  Set<Tag> tags, List<Appointment>appointments) {
+    public Person(Name name, Phone phone, Email email, Address address, Height height, Weight weight, BloodGroup bloodGroup
+                  ,Set<Tag> tags, List<Appointment>appointments) {
         requireAllNonNull(name, phone, email, address, height, weight, tags);
         this.name = name;
         this.phone = phone;
@@ -63,6 +65,7 @@ public class Person {
         this.address = address;
         this.height = height;
         this.weight = weight;
+        this.bloodGroup = bloodGroup;
         this.tags.addAll(tags);
         this.appointments.addAll(appointments);
     }
@@ -90,6 +93,8 @@ public class Person {
     public Weight getWeight() {
         return weight;
     }
+
+    public BloodGroup getBloodGroup() { return bloodGroup; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -141,13 +146,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getHeight().equals(getHeight())
                 && otherPerson.getWeight().equals(getWeight())
+                && otherPerson.getBloodGroup().equals(getBloodGroup())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, height, weight, tags);
+        return Objects.hash(name, phone, email, address, height, weight, bloodGroup, tags);
     }
 
     @Override
@@ -163,7 +169,9 @@ public class Person {
                 .append("; Height: ")
                 .append(getHeight())
                 .append("; Weight: ")
-                .append(getWeight());
+                .append(getWeight())
+                .append("; Blood group: ")
+                .append(getBloodGroup());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
