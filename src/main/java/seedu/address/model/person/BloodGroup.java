@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class BloodGroup {
     public static final String MESSAGE_CONSTRAINTS =
             "Blood group must be either A, B, AB or O and include Rh factor (+ or -)";
-    public static final String VALIDATION_REGEX ="^[ABO+-]*";
+    public static final String VALIDATION_REGEX ="([ABO]+)([+-]*)";
+    //public static final String VALIDATION_REGEX ="^[ABO+-]*";
 
     public final String bloodGroup;
 
